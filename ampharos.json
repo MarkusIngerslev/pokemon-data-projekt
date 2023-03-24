@@ -1,0 +1,24 @@
+{
+    "name": "Ampharos",
+    "description":
+      "The bright light on its tail can be seen far away. It has been treasured since ancient times as a beacon.",
+    "ability": "Static",
+    "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/181.png",
+    "footprint": "🐾",
+    "dexindex": 181,
+    "type": "Electric",
+    "subtype": "None",
+    "weaknesses": "Ground",
+    "gender": "both ♂ & ♀",
+    "weight": 61500,
+    "height": 140,
+    "generation": 2,
+    "spilversion": "Gold, Silver & Crystal",
+    "canEvolve": false,
+    "statsHP": 6,
+    "statsAttack": 5,
+    "statsDefence": 5,
+    "statsSpecialAttack": 7,
+    "statsSpecialDefence": 6,
+    "statsSpeed": 4
+  }
