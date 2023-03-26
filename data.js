@@ -3,35 +3,14 @@
 console.log("JavaScript is live!");
 window.addEventListener("load", start);
 
-function start() {
+async function start() {
   // laver constant for min pokemon
-  const Markus = {
-    name: "Ampharos",
-    description:
-      "The bright light on its tail can be seen far away. It has been treasured since ancient times as a beacon.",
-    ability: "Static",
-    image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/181.png",
-    footprint: "🐾",
-    dexindex: 181,
-    type: "Electric",
-    subtype: "None",
-    weaknesses: "Ground",
-    gender: "both ♂ & ♀",
-    weight: 61500,
-    height: 140,
-    generation: 2,
-    spilversion: "Gold, Silver & Crystal",
-    canEvolve: false,
-    statsHP: 6,
-    statsAttack: 5,
-    statsDefence: 5,
-    statsSpecialAttack: 7,
-    statsSpecialDefence: 6,
-    statsSpeed: 4,
-  };
+  const markus = await getPokemon(
+    "https://raw.githubusercontent.com/MarkusIngerslev/pokemon-data-projekt/main/ampharos.json"
+  );
 
   //viser min pokemon
-  showPokemon(Markus);
+  showPokemon(markus);
 }
 
 function showPokemon(pokemon) {
@@ -73,12 +52,12 @@ function showPokemon(pokemon) {
     <p>Generation: ${pokemon.generation}</p>
     <p>First gameversion: ${pokemon.spilversion}</p>
     <p>Can ${pokemon.name} evolve further? ${pokemon.canEvolve}</p>
-    <p>HP stat out of 15: ${pokemon.statsHP}</p>
-    <p>Attack stat out of 15: ${pokemon.statsAttack}</p>
-    <p>Defence stat out of 15: ${pokemon.statsDefence}</p>
-    <p>Special attack stat out of 15: ${pokemon.statsSpecialAttack}</p>
-    <p>Special defence stat out of 15: ${pokemon.statsSpecialDefence}</p>
-    <p>Speed stat out of 15: ${pokemon.statsSpeed}</p>
+    <p>HP stat: ${pokemon.statsHP} out of 15</p>
+    <p>Attack stat: ${pokemon.statsAttack} out of 15</p>
+    <p>Defence stat: ${pokemon.statsDefence} out of 15</p>
+    <p>Special attack stat: ${pokemon.statsSpecialAttack} out of 15</p>
+    <p>Special defence stat: ${pokemon.statsSpecialDefence} out of 15</p>
+    <p>Speed stat: ${pokemon.statsSpeed} out of 15</p>
     <p>Footprint ${pokemon.footprint}</p>
     `
   );
@@ -90,4 +69,11 @@ function showPokemon(pokemon) {
     //show dialog
     document.querySelector("#dialog-box").showModal();
   }
+}
+
+async function getPokemon(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
 }

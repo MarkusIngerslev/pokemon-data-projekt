@@ -188,3 +188,9 @@ input {
   display: block;
   background: var(--white);
 }
+
+/* ---------- dialog styling ---------- */
+
+dialog img {
+  width: 50%;
+}
