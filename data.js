@@ -4,13 +4,13 @@ console.log("JavaScript is live!");
 window.addEventListener("load", start);
 
 async function start() {
-  // laver constant for min pokemon
-  const markus = await getPokemon(
-    "https://raw.githubusercontent.com/MarkusIngerslev/pokemon-data-projekt/main/ampharos.json"
+  // laver constant for alle pokémons
+  const pokemon = await getPokemon(
+    "https://cederdorff.github.io/dat-js/05-data/pokemons.json"
   );
 
-  //viser min pokemon
-  showPokemon(markus);
+  //viser alle pokémons
+  pokemon.forEach(showPokemon);
 }
 
 function showPokemon(pokemon) {
