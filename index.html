@@ -10,10 +10,49 @@
   </head>
   <body>
     <header><h1>Vores pokemons</h1></header>
-    <main><section id="view" class="grid-container"></section></main>
+    <main>
+      <section id="view" class="grid-container"></section>
+    </main>
+
     <dialog id="dialog-box">
+      <section class="dialog-grid">
+        <figure>
+          <img src="" alt="" id="dialog-image" />
+        </figure>
+        <article>
+          <h2 id="dialog-pokemonName"></h2>
+          <p id="dialog-pokemon-description"></p>
+          <section>
+            <h4>Omkring</h4>
+            <ul>
+              <li>Index number: #<span id="dialog-dexindex"></span></li>
+              <li>Type: <span id="dialog-type"></span></li>
+              <li>Weaknesses: <span id="dialog-weaknesses"></span></li>
+              <li>Height: <span id="dialog-height"></span></li>
+              <li>Weight: <span id="dialog-weight"></span></li>
+              <li>Generation <span id="dialog-generation"></span></li>
+              <li>GameVersion <span id="dialog-spilversion"></span></li>
+              <li>Evolve: <span id="dialog-evolve"></span></li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>Stats</h4>
+            <ul>
+              <li>Hp stat: <span id="dialog-hp"></span></li>
+              <li>Attack stat: <span id="dialog-attack"></span></li>
+              <li>Defence stat: <span id="dialog-defence"></span></li>
+              <li>Speciel attack stat:<span id="dialog-sp-attack"></span></li>
+              <li>
+                Speciel defence stat: <span id="dialog-sp-defence"></span>
+              </li>
+              <li>Speed stat: <span id="dialog-speed"></span></li>
+            </ul>
+          </section>
+        </article>
+      </section>
       <form method="dialog">
-        <button>Close</button>
+        <button id="btn-cancel">Close</button>
       </form>
     </dialog>
     <script src="data.js"></script>

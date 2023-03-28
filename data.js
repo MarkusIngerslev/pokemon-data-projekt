@@ -35,6 +35,16 @@ function showPokemon(pokemon) {
   `
   );
 
+  document
+    .querySelector("#view article:last-child")
+    .addEventListener("click", pokemonClicked);
+
+  function pokemonClicked() {
+    showPokemonModal(pokemon);
+  }
+}
+
+function showPokemonModal(pokemon) {
   document.querySelector("#dialog-box").insertAdjacentHTML(
     "afterbegin",
     /* html */ `
@@ -62,13 +72,7 @@ function showPokemon(pokemon) {
     `
   );
 
-  document
-    .querySelector("#view article:last-child")
-    .addEventListener("click", pokemonClicked);
-  function pokemonClicked() {
-    //show dialog
-    document.querySelector("#dialog-box").showModal();
-  }
+  document.querySelector("#dialog-box").showModal();
 }
 
 async function getPokemon(url) {
