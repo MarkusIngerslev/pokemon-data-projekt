@@ -1,42 +1,48 @@
 "use strict";
 
-console.log("JavaScript is live!");
+// ========== Load & startup ========== //
+
 window.addEventListener("load", start);
 
 async function start() {
   // laver constant for alle pokémons
-  const pokemon = await getPokemon(
-    "https://cederdorff.github.io/dat-js/05-data/pokemons.json"
-  );
+  const pokemons = await getPokemon("2data.json");
+  showPokemons(pokemons);
+}
+// "https://cederdorff.github.io/dat-js/05-data/pokemons.json"
 
-  //viser alle pokémons
-  pokemon.forEach(showPokemon);
+// ========== Read ========== //
+// Read (Get) pokemons fra json file located on GitHub
+async function getPokemon(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+//Create HTML and display all users from given list
+function showPokemons(pokemonsList) {
+  for (const pokemon of pokemonsList) {
+    showPokemon(pokemon);
+  }
 }
 
 function showPokemon(pokemon) {
-  document.querySelector("#view").insertAdjacentHTML(
-    "afterbegin",
+  document.querySelector("#pokemons").insertAdjacentHTML(
+    "beforeend",
     /*html */ `
-    <article>
+    <article class="grid-item">
       <img src="${pokemon.image}">
       <h2>${pokemon.name}</h2>
-      <p>Ability: ${pokemon.ability}</p>
       <p>${pokemon.description}</p>
       <p>Index number #${pokemon.dexindex}</p>
-      <p>Type: ${pokemon.type}</p>
-      <p>Subtype: ${pokemon.subtype}</p>
-      <p>Weaknesses: ${pokemon.weaknesses}</p>
-      <p>The pokemon can be: ${pokemon.gender}</p>
-      <p>${pokemon.name}'s' weight is ${pokemon.weight} g</p>
-      <p>${pokemon.name}'s height is ${pokemon.height} cm</p>
-      <p>Generation: ${pokemon.generation}</p>
-      <p>First gameversion: ${pokemon.spilversion}</p> 
+      <p>Type: ${pokemon.type}</p>       
     </article>
   `
   );
 
   document
-    .querySelector("#view article:last-child")
+    .querySelector("#pokemons article:last-child")
     .addEventListener("click", pokemonClicked);
 
   function pokemonClicked() {
@@ -45,39 +51,44 @@ function showPokemon(pokemon) {
 }
 
 function showPokemonModal(pokemon) {
-  document.querySelector("#dialog-box").insertAdjacentHTML(
-    "afterbegin",
-    /* html */ `
-    <h2>${pokemon.name}</h2>
-    <img src="${pokemon.image}">
-    <p>Ability: ${pokemon.ability}</p>
-    <p>${pokemon.description}</p>
-    <p>Index number #${pokemon.dexindex}</p>
-    <p>Type: ${pokemon.type}</p>
-    <p>Subtype: ${pokemon.subtype}</p>
-    <p>Weaknesses: ${pokemon.weaknesses}</p>
-    <p>The pokemon can be: ${pokemon.gender}</p>
-    <p>${pokemon.name}'s' weight is ${pokemon.weight} g</p>
-    <p>${pokemon.name}'s height is ${pokemon.height} cm</p>
-    <p>Generation: ${pokemon.generation}</p>
-    <p>First gameversion: ${pokemon.spilversion}</p>
-    <p>Can ${pokemon.name} evolve further? ${pokemon.canEvolve}</p>
-    <p>HP stat: ${pokemon.statsHP} out of 15</p>
-    <p>Attack stat: ${pokemon.statsAttack} out of 15</p>
-    <p>Defence stat: ${pokemon.statsDefence} out of 15</p>
-    <p>Special attack stat: ${pokemon.statsSpecialAttack} out of 15</p>
-    <p>Special defence stat: ${pokemon.statsSpecialDefence} out of 15</p>
-    <p>Speed stat: ${pokemon.statsSpeed} out of 15</p>
-    <p>Footprint ${pokemon.footprint}</p>
-    `
-  );
+  console.log(pokemon);
 
+  document.querySelector("#dialog-image").src = pokemon.image;
+  document.querySelector("#dialog-pokemon-name").textContent = pokemon.name;
+
+  // description
+  document.querySelector("#dialog-dexindex").textContent = pokemon.dexindex;
+  document.querySelector("#dialog-type").textContent = pokemon.type;
+  document.querySelector("#dialog-weaknesses").textContent = pokemon.weaknesses;
+  document.querySelector("#dialog-height").textContent = pokemon.height;
+  document.querySelector("#dialog-weight").textContent = pokemon.weight;
+  document.querySelector("#dialog-generation").textContent = pokemon.generation;
+  document.querySelector("#dialog-spilversion").textContent =
+    pokemon.spilversion;
+  // laver function til at se om en pokemon stadig kan evolve
+  let evolve = generateEvolve(pokemon);
+  document.querySelector("#dialog-evolve").textContent = evolve;
+
+  //stats
+  document.querySelector("#dialog-hp").textContent = pokemon.statsHP;
+  document.querySelector("#dialog-attack").textContent = pokemon.statsAttack;
+  document.querySelector("#dialog-defence").textContent = pokemon.statsDefence;
+  document.querySelector("#dialog-sp-attack").textContent =
+    pokemon.statsSpecialAttack;
+  document.querySelector("#dialog-sp-defence").textContent =
+    pokemon.statsSpecialDefence;
+  document.querySelector("#dialog-speed").textContent = pokemon.statsSpeed;
+
+  // show dialog
   document.querySelector("#dialog-box").showModal();
 }
 
-async function getPokemon(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return data;
+function generateEvolve(pokemon) {
+  let maybeEvolve = "";
+  if (pokemon.canEvolve == true) {
+    maybeEvolve = `${pokemon.name} is still able to evolve.`;
+  } else {
+    maybeEvolve = `${pokemon.name} is not able to evolve.`;
+  }
+  return maybeEvolve;
 }
