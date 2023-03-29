@@ -44,9 +44,9 @@ function showPokemon(pokemon) {
     <article class="grid-item">
       <img src="${pokemon.image}">
       <h2>${pokemon.name}</h2>
+      <p class="p-dexindex">Index number #${pokemon.dexindex}</p>
+      <p class="p-type">Type: ${pokemon.type}</p>       
       <p>${pokemon.description}</p>
-      <p>Index number #${pokemon.dexindex}</p>
-      <p>Type: ${pokemon.type}</p>       
     </article>
   `
   );
@@ -74,6 +74,9 @@ function showPokemonModal(pokemon) {
     "#dialog-dexindex"
   ).textContent = `Index number: #${pokemon.dexindex}`;
   document.querySelector("#dialog-type").textContent = `Type: ${pokemon.type}`;
+  document.querySelector(
+    "#dialog-gender"
+  ).textContent = `Gender: ${pokemon.gender}`;
   document.querySelector(
     "#dialog-weaknesses"
   ).textContent = `Weaknesses: ${pokemon.weaknesses}`;

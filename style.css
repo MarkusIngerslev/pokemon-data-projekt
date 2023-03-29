@@ -1,12 +1,24 @@
 /* ---------- root variables ---------- */
 :root {
-  --green: rgb(38, 76, 89);
-  --light-green: rgb(172, 198, 201);
-  --light-grey: #f1f1f4;
-  --text-color-light: #f1f1f1;
+  --red: rgb(166, 38, 57);
+  --light-red: rgb(219, 50, 77);
+  --light-grey: rgb(162, 156, 155);
+  --periwinkle: rgb(191, 215, 255);
+  --text-color-yellow: #ffee93;
+  --text-color-blue: #197bbd;
+  --text-color-main: #56494e;
   --text-color-dark: #333;
-  --white: #f2f2f2;
   --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* ---------- Custome fonts ---------- */
+@font-face {
+  font-family: customeHeaderFooter;
+  src: url("font/PocketMonk-15ze.ttf");
+}
+
+@font-face {
+  font-family: customeTextFamily;
+  src: url("font/PokemonGb-RAeo.ttf");
 }
 /* ---------- general styling ---------- */
 html {
@@ -29,18 +41,9 @@ h1 {
 }
 
 h2 {
-  font-weight: 500;
-  letter-spacing: 0.1px;
-}
-
-h3 {
-  font-weight: 500;
-  letter-spacing: 0.1px;
-}
-
-a {
-  cursor: pointer;
-  color: var(--green);
+  font-family: customeHeaderFooter;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 img {
@@ -50,9 +53,9 @@ img {
 
 /* ---------- header styling ---------- */
 header {
-  background-color: var(--green);
-  color: var(--text-color-light);
-  padding: 1em;
+  background-color: var(--light-red);
+  color: var(--text-main-color);
+  padding: 0.5em;
   position: fixed;
   top: 0;
   left: 0;
@@ -60,20 +63,32 @@ header {
   z-index: 9999;
 }
 
+header h1 {
+  font-family: customeHeaderFooter;
+  color: var(--text-color-yellow);
+  -webkit-text-stroke: 2px var(--text-color-blue);
+}
+
 /* ---------- footer styling ---------- */
 
 footer {
-  background-color: var(--green);
-  color: var(--text-color-light);
+  background-color: var(--light-red);
+  color: var(--text-main-color);
   padding: 1em;
   text-align: center;
 }
 
+footer h1 {
+  font-family: customeHeaderFooter;
+  color: var(--text-color-yellow);
+  -webkit-text-stroke: 2px var(--text-color-blue);
+}
+
 /* ---------- main page styling ---------- */
 main {
-  background: var(--light-grey);
+  background: var(--red);
   animation: fadeIn 0.4s;
-  padding: 137px 0 0;
+  padding: 120px 0 0;
 }
 
 /* ---------- animations ---------- */
@@ -121,14 +136,15 @@ main {
 .grid-container > article {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5em;
-  background-color: var(--white);
+  background-color: var(--periwinkle);
   transition: 0.5s;
   animation: fadeIn 0.5s;
   cursor: pointer;
+  border-radius: 40px;
 }
 
 .grid-container > article:hover {
-  box-shadow: 0 8px 16px 0 var(--green);
+  box-shadow: 0 8px 16px 0 var(--text-color-blue);
 }
 
 .grid-container img {
@@ -139,54 +155,70 @@ main {
 
 .grid-container p {
   margin: 0.3em 0;
+  font-size: 0.75em;
+  font-family: customeTextFamily;
 }
 
-/* ---------- buttons in grid container ---------- */
-
-.grid-container .btns {
-  padding: 1em 0 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
+.p-dexindex {
+  padding-bottom: 5px;
+  font-weight: bold;
 }
 
-.grid-container .btns button {
-  width: 100%;
+.p-type {
+  padding-bottom: 10px;
+  padding-top: 5px;
 }
 
 /* ---------- form styling ---------- */
 /* input form stryling */
 form {
-  margin: 2em auto 0;
+  margin: 1.5em auto 0;
   background-color: var(--light-green);
   padding: 1em 1em 2em;
   text-align: center;
 }
 
 button {
+  font-family: customeHeaderFooter;
+  -webkit-text-stroke: 2px var(--text-color-blue);
   font-weight: 300;
-  font-size: 1em;
+  font-size: 2em;
   text-align: center;
   cursor: pointer;
   border: none;
-  border-radius: 0;
-  color: var(--text-color-light);
-  background-color: var(--green);
-  letter-spacing: 0.05em;
+  border-radius: 10px;
+  color: var(--text-color-yellow);
+  background-color: var(--red);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.5em 1em;
+  padding: 0.5em 0em;
   width: 100%;
   max-width: 380px;
 }
 
-input {
-  margin: 1em auto;
-  width: 100%;
-  max-width: 350px;
-  padding: 1em;
-  border: 2px solid var(--green);
-  display: block;
-  background: var(--white);
+/* ---------- dialog styling ---------- */
+
+dialog {
+  background-color: var(--periwinkle);
+  border-radius: 50px;
 }
 
-/* ---------- dialog styling ---------- */
+dialog h2 {
+  font-size: 2em;
+}
+
+dialog h4 {
+  margin: 10px 0px;
+  font-family: customeTextFamily;
+  font-size: 0.8em;
+}
+ul {
+  margin: 0px;
+}
+
+li {
+  list-style-type: none;
+  font-family: customeTextFamily;
+  font-size: 0.75em;
+  padding: 2px 0;
+}
