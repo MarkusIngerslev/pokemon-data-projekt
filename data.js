@@ -9,7 +9,6 @@ async function start() {
   const pokemons = await getPokemon();
   pokemons.sort(compareDexIndex);
   showPokemons(pokemons);
-  shopw;
 }
 
 // ========== Read ========== //
