@@ -43,7 +43,7 @@ function compareDexIndex(pokemonA, pokemonB) {
 
 ## Udsende fra hjemmesiden
 
-Efter at objekterne fra json filen er bliver sorteret vil de bliver opbygget i nogle `<article>` tags og sat ind i hmtl'en og sorteret ud fra deres dex nummer. Nedenfor kan opbygning af det første viste element ses.
+Efter at objekterne fra json filen er bliver sorteret vil de bliver opbygget i nogle `<article>` tags og sat ind i html'en og sorteret ud fra deres dex nummer. Nedenfor kan opbygning af det første viste element ses.
 
 ```JavaScript
 function showPokemon(pokemon) {
